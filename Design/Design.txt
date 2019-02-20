@@ -1,0 +1,41 @@
+This project is a recreation of a game called Snow Craft, which can be found at http://nny.com/snowcraft/play/ .
+
+	The main part of the coding for this game is to keep track of the player's properties.
+The green and red players have different properties. The green player properties include position,
+hit count (how many times they have been hit), and hit time (how long it's been since they have been hit). 
+These properties are stored as tuples for each player in a list of players for the respective team.
+The position is used to draw the image of the player at the specific position. The hit count is used
+to see how many times the player has been hit. The hit time is the duration right after a hit when the
+player is stunned for a while. The hit time is reduced after every call of timerFired function. On the first
+ hit, the green player uses this hit time to brush snow off of his face. On the second hit, the player rests
+lying down on the ground for a bit. Note that on the second hit count, the green player may not be hit again 
+until he gets up. Once the hit count reaches 3, the maximum hit count, then the player is removed from the 
+list of green players and added to the list of dead green players, which is then drawn as part of the background. 
+What they do after each hit is modeled after the game in the link above. For each green player, there is also a 
+corresponding list of commands for each player.The green player AI will take this list and if the player has no 
+command then it will give it a new command with the randomizeCommand function. If the command is throw, while the 
+snowball that this player has thrown is still on screen, the green player may not move, this is also modeled after 
+the game from the link. If the command is to move then the list of orders will have a tuple stored for the player 
+indicating the number of steps to take and in the direction to take them in. In the link above, the green players 
+move diagonally while in this version, the green players move either horizontally or vertically. I could have made 
+the green players move diagonally as well, but that would only require a small change to the code and does not really 
+make a difference to the game play. Also, the randomization of the commands is also modeled after the game because I 
+found from experience in playing the game that the challenge of the game was not being able to predict what the 
+players would do therefore making it harder to hit them.
+	The red players have similar properties except that they do not have hit counts. A red player can be hit as 
+many times as long as those hits do not occur consecutively. If the hit time is greater than a certain number, then 
+the player is dead. Note that this same method could not be used for green players because on the second hit, the player
+cannot be hit again while it's hit time is the same as being hit the first time. When one of these players is clicked,
+the properties for the specific player is stored in canvas.data.playerSelected. Also, when the player is selected a 
+throw strength counter will increase until the mouse button is released. As the throw strength counter increases, a 
+green meter to the right of the selected player will increase. There are five bars in total for the meter so each bar
+indicates that the throw will carry the snowball 1/5 of the distance of the window. The full five bars is enough to take
+the snowball from one corner to the opposite corner. The green players' snowballs will always be thrown far enough to 
+reach the end of the screen, this is also modeled after the game from the link. 
+	A couple of things that were bad about the game from the link is that the green players can move off of the
+screen without the red player knowing, making it nearly impossible for the red player to win the game. In fact, on 
+some levels the green players initialize off of the screen. The red players may also be moved off of the screen if you
+drag the player off of the screen while holding down the left mouse button. 
+	As for the user interface, since I used images from the game it looks pretty much the same except for the loading
+screen, instructions, and in between level screens. These are just simple screens with text written on them since these
+screens do not really affect the game play much.    
