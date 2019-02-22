@@ -1,3 +1,5 @@
+##### MUST BE RUN ON PYTHON 2 ####
+
 from Tkinter import * #andrew ID: hyunminp
 from pygame import mixer
 import random
@@ -363,7 +365,7 @@ def leftMouseReleased(event):
 ############Green AI
 
 def greenPlayerAI():  #the AI for the green players
-    for player in xrange(len(canvas.data.greenPlayersList)):
+    for player in range(len(canvas.data.greenPlayersList)):
         if canvas.data.greenPlayersList[player][3]>0: #green player is doing
             pass                                      #something
         elif canvas.data.greenOrders[player] ==0:#green player is doing nothing
@@ -450,7 +452,7 @@ def initialGreenLevelOne(): #creates green initial green players for level one
     for player in canvas.data.greenPlayersList:
         createGreenPlayers(player)
 
-def createGreenPlayers(x,y,hitCount,hitTime): #creates green players
+def createGreenPlayers((x,y,hitCount,hitTime)): #creates green players
     gStand = canvas.data.image["gstand"]        #at given location
     gHit,gThrow = canvas.data.image["ghit"],canvas.data.image["gthrow"]
     gBrushOne = canvas.data.image["gbrushOne"]
@@ -561,7 +563,7 @@ def initialRedPlayers(): #creates 3 red players at initial locations
                                    (redTwoX,redTwoY,hitTime),\
                                    (redThreeX,redThreeY,hitTime)]
     
-def createRedPlayers(x,y,hitTime):  #creates red players at given location
+def createRedPlayers((x,y,hitTime)):  #creates red players at given location
     rStand = canvas.data.image["rstand"]
     rSelected = canvas.data.image["rselected"]
     rPlayerHit = canvas.data.image["rplayerhit"]
@@ -588,10 +590,10 @@ def gameStart(): #the loading page
     canvas.create_text(x,y,text = "Snow Craft", fill = "blue",\
                        font="Helvtica "+str(textSize)+" bold")
     canvas.create_text(x,y+textSize, text = "Press 'enter' to start",\
-                       fill="blue",font = "Helvetica "+str(textSize/3)+" bold")
+                       fill="blue",font = "Helvetica "+str(int(textSize/3))+" bold")
     canvas.create_text(x,y+textSize+(textSize/2), text = "Press 'h' for help",\
                        fill = "blue",font = "Helvetica "+\
-                       str(textSize/3)+" bold")
+                       str(int(textSize/3))+" bold")
 ############
 ############   
 def run(): 
